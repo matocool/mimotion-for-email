@@ -1,9 +1,8 @@
-# mimotion for email
+
 
 
 # 小米运动自动刷步数For Email
 
-> 小米运动自动刷步数For Email
 
 ## Github Actions 部署指南
 
