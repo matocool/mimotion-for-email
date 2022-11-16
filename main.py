@@ -84,8 +84,8 @@ def getBeijinTime():
         max_ratio = math.ceil(int(hour) / 3)
         print(min_ratio)
         print(max_ratio)
-        min_1 = 500 * min_ratio * min_ratio
-        max_1 = 600 * max_ratio * (max_ratio + 1)
+        min_1 = 1000 * min_ratio * min_ratio
+        max_1 = 1000 * max_ratio * (max_ratio + 1)
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         #print(min_1)
