@@ -27,7 +27,7 @@
 >
 >#### 例如
 
->**12345@qq.com#54321@qq.com* 变量 **USER**
+>*12345@qq.com#54321@qq.com* 变量 **USER**
 
 >**abc123qwe#abcqwe2** 变量 **PWD**
 
@@ -38,7 +38,7 @@
 
 ### 五、自定义随机步数范围
 
-在main.py 约83-90行处修改计算方法
+在main.py 87~88行处修改计算方法
 
 ## 六、感谢名单<br><br>https://github.com/huangshihai/mimotion<br>https://github.com/xunichanghuan/mimotion<br>https://gitee.com/daenmax/zepp-millet-brush-steps/blob/master/sport.php
 
