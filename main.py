@@ -10,7 +10,7 @@ import time
 import requests
 
 # 推送server酱
-# sckey = sys.argv[5]
+sckey = sys.argv[5]
 
 # 开启根据地区天气情况降低步数（默认关闭）
 open_get_weather = sys.argv[3]
@@ -84,8 +84,8 @@ def getBeijinTime():
         max_ratio = math.ceil(int(hour) / 3)
         print(min_ratio)
         print(max_ratio)
-        min_1 = 8888 * min_ratio * min_ratio
-        max_1 = 8888 * max_ratio * (max_ratio + 1)
+        min_1 = 500 * min_ratio * min_ratio
+        max_1 = 600 * max_ratio * (max_ratio + 1)
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         #print(min_1)
