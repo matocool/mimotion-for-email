@@ -22,7 +22,7 @@ set_push = [True]
 # 以下如果看不懂直接默认就行只需改上面
 
 # 系数K查询到天气后降低步数比率，如查询得到设置地区为多云天气就会在随机后的步数乘0.9作为最终修改提交的步数
-K_dict = {"多云": 0.9, "阴": 0.8, "小雨": 0.7, "中雨": 0.5, "大雨": 0.4, "暴雨": 0.3, "大暴雨": 0.2, "特大暴雨": 0.2}
+K_dict = {"多云": 0.95, "阴": 0.9, "小雨": 0.7, "中雨": 0.5, "大雨": 0.4, "暴雨": 0.3, "大暴雨": 0.2, "特大暴雨": 0.2}
 
 # 北京时间
 time_bj = datetime.datetime.today() + datetime.timedelta(hours=8)
@@ -37,32 +37,31 @@ def getWeather():
         return
     else:
         global K, type
-        url = 'http://wthrcdn.etouch.cn/weather_mini?city=' + area
+        url = 'https://api.kit9.cn/api/seven_days_weather/api.php?city=' + area
         hea = {'User-Agent': 'Mozilla/5.0'}
         r = requests.get(url=url, headers=hea)
         if r.status_code == 200:
             result = r.text
             res = json.loads(result)
-            if "多云" in res['data']['forecast'][0]['type']:
+            if "多云" in res['data'][0]['weather']:
                 K = K_dict["多云"]
-            elif "阴" in res['data']['forecast'][0]['type']:
+            elif "阴" in res['data'][0]['weather']:
                 K = K_dict["阴"]
-            elif "小雨" in res['data']['forecast'][0]['type']:
+            elif "小雨" in res['data'][0]['weather']:
                 K = K_dict["小雨"]
-            elif "中雨" in res['data']['forecast'][0]['type']:
+            elif "中雨" in res['data'][0]['weather']:
                 K = K_dict["中雨"]
-            elif "大雨" in res['data']['forecast'][0]['type']:
+            elif "大雨" in res['data'][0]['weather']:
                 K = K_dict["大雨"]
-            elif "暴雨" in res['data']['forecast'][0]['type']:
+            elif "暴雨" in res['data'][0]['weather']:
                 K = K_dict["暴雨"]
-            elif "大暴雨" in res['data']['forecast'][0]['type']:
+            elif "大暴雨" in res['data'][0]['weather']:
                 K = K_dict["大暴雨"]
-            elif "特大暴雨" in res['data']['forecast'][0]['type']:
+            elif "特大暴雨" in res['data'][0]['weather']:
                 K = K_dict["特大暴雨"]
-            type = res['data']['forecast'][0]['type']
+            type = res['data'][0]['weather']
         else:
             print("获取天气情况出错")
-
 
 # 获取北京时间确定随机步数&启动主函数
 def getBeijinTime():
@@ -80,16 +79,19 @@ def getBeijinTime():
         pattern = re.compile('nhrs=(\\d+)')
         find = re.search(pattern, result)
         hour = find.group(1)
-        min_ratio = max(math.ceil((int(hour) / 3) - 1), 0)
-        max_ratio = math.ceil(int(hour) / 3)
-        print(min_ratio)
-        print(max_ratio)
-        min_1 = 1000 * min_ratio * min_ratio
-        max_1 = 1000 * max_ratio * (max_ratio + 1)
+        #min_ratio = max(math.ceil((int(hour) / 3) - 1), 0)
+        #max_ratio = math.ceil(int(hour) / 3)
+        #print(min_ratio)
+        #print(max_ratio)
+        max_ratio = int(hour)
+        min_1 = max(-0.9148 * pow(max_ratio, 3) + 51.275 * pow(max_ratio, 2) - 316.47 * max_ratio + 363.57, 0)
+        max_1 = 1.1 * max(0.1909 * pow(max_ratio, 4) - 7.9302 * pow(max_ratio, 3) + 139.51 * pow(max_ratio, 2) - 666.4 * max_ratio + 695.94, 0)
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
-        #print(min_1)
-        #print(max_1)
+        print("天气系数是")
+        print(K)
+        print(min_1)
+        print(max_1)
     else:
         print("获取北京时间失败")
         return
@@ -209,10 +211,10 @@ def main(_user, _passwd, min_1, max_1):
 
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
-    result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n\n账号：{user[:3]}****{user[7:]} 修改步数（{step}）\\[" + response['message'] + "]\n\n\n✅✅✅✅✅✅✅✅✅"
-    # print(result)
+    #result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n\n账号：{user[:3]}****{user[7:]} 修改步数（{step}）\\[" + response['message'] + "]\n\n\n✅✅✅✅✅✅✅✅✅"
+    result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n修改步数（{step}）\\[" + response['message'] + "]\n\n✅✅✅✅✅✅✅✅✅"
+    print(result)
     return result
-
 
 # 获取时间戳
 def get_time():
