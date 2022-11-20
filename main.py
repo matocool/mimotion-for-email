@@ -79,13 +79,13 @@ def getBeijinTime():
         pattern = re.compile('nhrs=(\\d+)')
         find = re.search(pattern, result)
         hour = find.group(1)
-        #min_ratio = max(math.ceil((int(hour) / 3) - 1), 0)
-        #max_ratio = math.ceil(int(hour) / 3)
-        #print(min_ratio)
-        #print(max_ratio)
+        min_ratio = max(math.ceil((int(hour) / 3) - 1), 0)
+        max_ratio = math.ceil(int(hour) / 3)
+        print(min_ratio)
+        print(max_ratio)
         max_ratio = int(hour)
-        min_1 = max(-0.9148 * pow(max_ratio, 3) + 51.275 * pow(max_ratio, 2) - 316.47 * max_ratio + 363.57, 0)
-        max_1 = 1.1 * max(0.1909 * pow(max_ratio, 4) - 7.9302 * pow(max_ratio, 3) + 139.51 * pow(max_ratio, 2) - 666.4 * max_ratio + 695.94, 0)
+        min_1 = 8888 * min_ratio
+        max_1 = 8888 * max_ratio
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         print("天气系数是")
@@ -211,8 +211,7 @@ def main(_user, _passwd, min_1, max_1):
 
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
-    #result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n\n账号：{user[:3]}****{user[7:]} 修改步数（{step}）\\[" + response['message'] + "]\n\n\n✅✅✅✅✅✅✅✅✅"
-    result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n修改步数（{step}）\\[" + response['message'] + "]\n\n✅✅✅✅✅✅✅✅✅"
+    result = f"时间：[{今天}]\n\n\n\n账号：{user[:3]}****{user[7:]}\n\n\n\n步数：{step}\n\n\n\n状态：[" + response['message'] + "]\n\n怒发冲冠，凭栏处、潇潇雨歇。抬望眼、仰天长啸，壮怀激烈。三十功名尘与土，八千里路云和月。莫等闲、白了少年头，空悲切。\n\n靖康耻，犹未雪；臣子恨，何时灭？驾长车，踏破贺兰山缺。壮志饥餐胡虏肉，笑谈渴饮匈奴血。待从头，收拾旧山河，朝天阙。\n\n\n\n__________________________\n\n\n\n"
     print(result)
     return result
 
