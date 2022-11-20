@@ -84,8 +84,8 @@ def getBeijinTime():
         #print(min_ratio)
         #print(max_ratio)
         max_ratio = int(hour)
-        min_1 = 8.1 * max(-0.9148 * pow(max_ratio, 3) + 51.275 * pow(max_ratio, 2) - 316.47 * max_ratio + 363.57, 0)
-        max_1 = 6.1 * max(0.1909 * pow(max_ratio, 4) - 7.9302 * pow(max_ratio, 3) + 139.51 * pow(max_ratio, 2) - 666.4 * max_ratio + 695.94, 0)
+        min_1 = max(-0.9148 * pow(max_ratio, 3) + 51.275 * pow(max_ratio, 2) - 316.47 * max_ratio + 363.57, 0)
+        max_1 = 1.1 * max(0.1909 * pow(max_ratio, 4) - 7.9302 * pow(max_ratio, 3) + 139.51 * pow(max_ratio, 2) - 666.4 * max_ratio + 695.94, 0)
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         print("天气系数是")
@@ -239,7 +239,7 @@ def push_wx(desp=""):
         print(sckey == "NO")
         return
     else:
-        server_url = f"https://sc.ftqq.com/{sckey}.send"
+        server_url = f"https://sctapi.ftqq.com/{sckey}.send"
         params = {
             "text": '【✍小米运动步数修改✍】',
             "desp": desp
