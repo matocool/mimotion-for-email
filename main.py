@@ -84,8 +84,8 @@ def getBeijinTime():
         print(min_ratio)
         print(max_ratio)
         max_ratio = int(hour)
-        min_1 = 3333 * min_ratio
-        max_1 = 3333 * max_ratio
+        min_1 = 7000 * min_ratio
+        max_1 = 3000 * max_ratio
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         print("天气系数是")
@@ -211,7 +211,7 @@ def main(_user, _passwd, min_1, max_1):
 
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
-    result = f"时间：[{今天}]\n\n\n\n账号：{user[:3]}****{user[7:]}\n\n\n\n步数：{step}\n\n\n\n状态：[" + response['message'] + "]\n\n怒发冲冠，凭栏处、潇潇雨歇。抬望眼、仰天长啸，壮怀激烈。三十功名尘与土，八千里路云和月。莫等闲、白了少年头，空悲切。\n\n靖康耻，犹未雪；臣子恨，何时灭？驾长车，踏破贺兰山缺。壮志饥餐胡虏肉，笑谈渴饮匈奴血。待从头，收拾旧山河，朝天阙。\n\n\n\n__________________________\n\n\n\n"
+    result = f"时间：[{now}]\n\n\n\n账号：{user[:3]}****{user[7:]}\n\n\n\n步数：{step}\n\n\n\n状态：[" + response['message'] + "]\n\n怒发冲冠，凭栏处、潇潇雨歇。抬望眼、仰天长啸，壮怀激烈。三十功名尘与土，八千里路云和月。莫等闲、白了少年头，空悲切。\n\n靖康耻，犹未雪；臣子恨，何时灭？驾长车，踏破贺兰山缺。壮志饥餐胡虏肉，笑谈渴饮匈奴血。待从头，收拾旧山河，朝天阙。\n\n\n\n__________________________\n\n\n\n"
     print(result)
     return result
 
