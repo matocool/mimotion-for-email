@@ -36,3 +36,18 @@ jobs:
           area='${{ secrets.AREA }}'
           sckey='${{ secrets.SCKEY }}'
           python3 main.py ${user} ${passwd} ${open_get_weather} ${area} ${sckey}
+
+      - name: Update Time
+        run: |
+          time=$(TZ=UTC-8 date +'%Y-%m-%d %H:%M:%S')
+          sed -i "s/^最后一次运行时间:.*/最后一次运行时间: $time （北京时间） /g" README.md
+          
+      - name: Git push assets to Github
+        run: |
+          git init
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git branch -m master
+          git add --all
+          git commit -m "Updated at $(TZ=UTC-8 date +'%Y-%m-%d %H:%M:%S')（北京时间）"
+          git push -u origin -f
