@@ -3,8 +3,6 @@
 
 # 小米运动自动刷步数For Email
 
-最后一次运行时间:
-
 ## Github Actions 部署指南
 
 ### 一、Fork 此仓库
