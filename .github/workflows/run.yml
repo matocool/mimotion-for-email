@@ -40,5 +40,5 @@ jobs:
       - name: Update Time
         run: |
           time=$(TZ=UTC-8 date +'%Y-%m-%d %H:%M:%S')
-          sed –n ‘6s/最后一次运行时间/最后一次运行时间: $time （北京时间）/’ README.md
+          sed -i "s/^最后一次运行.*/最后一次运行时间: $time （北京时间） /g" README.md
           
