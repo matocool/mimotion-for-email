@@ -3,6 +3,7 @@
 
 # 小米运动自动刷步数For Email
 
+# 部分人配置完毕之后并没有运行，需要先点击action，点击刷步数，点击 run workflow 即可运行
 
 ## Github Actions 部署指南
 
@@ -30,6 +31,8 @@
 >*12345@qq.com#54321@qq.com* 变量 **USER**
 
 >**abc123qwe#abcqwe2** 变量 **PWD**
+
+# 最后，点击action，点击刷步数，点击 run workflow 即可运行
 
 ### 四、自定义启动时间
 
