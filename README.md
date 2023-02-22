@@ -44,11 +44,8 @@
 
 在main.py 87~88行处修改计算方法
 
-## 六、感谢名单<br><br>https://github.com/huangshihai/mimotion<br>https://github.com/xunichanghuan/mimotion<br>https://gitee.com/daenmax/zepp-millet-brush-steps/blob/master/sport.php
 
-
-
-### 七、注意事项
+### 六、注意事项
 
 **1. 每天运行六次，整由run.yml中的cron控制，分钟为随机值**
 
