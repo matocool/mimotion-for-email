@@ -1,8 +1,6 @@
 # 因为步数的问题，支付宝估计是为了避免发生类似的事情，直接清理掉了 ZeppLife 的功能接口，具体原因不明。微信依然可用。
 
-# 小米运动自动刷步数For Email
-
-## Github Actions 部署指南
+## 小米运动自动刷步数For Email    Github Actions 部署指南
 
 ### 一、Fork 此仓库
 
