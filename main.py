@@ -6,7 +6,6 @@ import random
 import re
 import sys
 import time
-
 import requests
 
 # 推送server酱
@@ -151,7 +150,7 @@ def login(user, password):
     data2 = {
         "allow_registration=": "false",
         "app_name": "com.xiaomi.hm.health",
-        "app_version": "6.3.5",
+        "app_version": "6.5.5",
         "code": f"{code}",
         "country_code": "CN",
         "device_id": "2C8B4939-0CCD-4E94-8CBA-CB8EA6E613A1",
