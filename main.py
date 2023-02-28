@@ -6,6 +6,7 @@ import random
 import re
 import sys
 import time
+
 import requests
 
 # 推送server酱
@@ -78,13 +79,13 @@ def getBeijinTime():
         pattern = re.compile('nhrs=(\\d+)')
         find = re.search(pattern, result)
         hour = find.group(1)
-        min_ratio = max(math.ceil((int(hour) / 3) - 1), 0)
-        max_ratio = math.ceil(int(hour) / 3)
-        print(min_ratio)
-        print(max_ratio)
+        #min_ratio = max(math.ceil((int(hour) / 3) - 1), 0)
+        #max_ratio = math.ceil(int(hour) / 3)
+        #print(min_ratio)
+        #print(max_ratio)
         max_ratio = int(hour)
-        min_1 = 6000 * min_ratio
-        max_1 = 2500 * max_ratio
+        min_1 = max(-0.9148 * pow(max_ratio, 3) + 51.275 * pow(max_ratio, 2) - 316.47 * max_ratio + 363.57, 0)
+        max_1 = 1.1 * max(0.1909 * pow(max_ratio, 4) - 7.9302 * pow(max_ratio, 3) + 139.51 * pow(max_ratio, 2) - 666.4 * max_ratio + 695.94, 0)
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         print("天气系数是")
@@ -150,7 +151,7 @@ def login(user, password):
     data2 = {
         "allow_registration=": "false",
         "app_name": "com.xiaomi.hm.health",
-        "app_version": "6.5.5",
+        "app_version": "6.3.5",
         "code": f"{code}",
         "country_code": "CN",
         "device_id": "2C8B4939-0CCD-4E94-8CBA-CB8EA6E613A1",
@@ -178,6 +179,7 @@ def main(_user, _passwd, min_1, max_1):
     user = str(_user)
     password = str(_passwd)
     step = str(random.randint(min_1, max_1))
+    # step = str(26702)
     print("已设置为随机步数(" + str(min_1) + "~" + str(max_1) + ")")
     if user == '' or password == '':
         print("用户名或密码填写有误！")
@@ -210,16 +212,26 @@ def main(_user, _passwd, min_1, max_1):
 
     response = requests.post(url, data=data, headers=head).json()
     # print(response)
-    result = f"时间：[{now}]\n\n\n\n账号：{user[:3]}****{user[7:]}\n\n\n\n步数：{step}\n\n\n\n状态：[" + response['message'] + "]\n\n\n\n______________________________\n\n\n\n"
+    #result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n\n账号：{user[:3]}****{user[7:]} 修改步数（{step}）\\[" + response['message'] + "]\n\n\n✅✅✅✅✅✅✅✅✅"
+    result = f"[{now}]\n\n🌸💐💮🌹🌺🌻🌼🌷🍀✨💟\n修改步数（{step}）\\[" + response['message'] + "]\n\n✅✅✅✅✅✅✅✅✅"
     print(result)
     return result
 
 # 获取时间戳
+# def get_time():
+#     url = 'https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5'
+#     response = requests.get(url, headers=headers).json()
+#     t = response['currentTime2']
+#     return t
 def get_time():
-    url = 'https://apps.game.qq.com/CommArticle/app/reg/gdate.php'
-    response = requests.get(url, headers=headers).json()
-    t = response['currentTime2']
-    return t
+    try:
+        url = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"
+        response = requests.get(url, headers=self.headers).json()
+        t = response["data"]["t"]
+        return t
+    except Exception as e:
+        print(e)
+        return
 
 
 # 获取app_token
@@ -239,7 +251,7 @@ def push_wx(desp=""):
     else:
         server_url = f"https://sctapi.ftqq.com/{sckey}.send"
         params = {
-            "text": '🍍邮箱版运动步数修改🍍',
+            "text": '【✍小米运动步数修改✍】',
             "desp": desp
         }
 
