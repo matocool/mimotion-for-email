@@ -6,7 +6,7 @@ on:
   #pull_request:
   #  branches: [ main ]
   schedule:
-    - cron: '14 0,2,4,7,10,12,14 * * *'
+    - cron: '14 2,4,7,10,12 * * *'
   watch:
     types: started
   workflow_dispatch:
@@ -36,9 +36,4 @@ jobs:
           area='${{ secrets.AREA }}'
           sckey='${{ secrets.SCKEY }}'
           python3 main.py ${user} ${passwd} ${open_get_weather} ${area} ${sckey}
-
-      - name: Update Time
-        run: |
-          time=$(TZ=UTC-8 date +'%Y-%m-%d %H:%M:%S')
-          sed -i "s/最后一次运行/最后一次运行时间: $time（北京时间）/g" README.md
         
