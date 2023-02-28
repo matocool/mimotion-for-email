@@ -6,7 +6,7 @@ on:
   #pull_request:
   #  branches: [ main ]
   schedule:
-    - cron: '14 2,4,7,10,12 * * *'
+    - cron: '9 4,7,10,12,13 * * *'
   watch:
     types: started
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
       - name: 初始化Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11
+          python-version: '3.10'
           
       - name: 开始
         run: |
@@ -36,4 +36,3 @@ jobs:
           area='${{ secrets.AREA }}'
           sckey='${{ secrets.SCKEY }}'
           python3 main.py ${user} ${passwd} ${open_get_weather} ${area} ${sckey}
-        
