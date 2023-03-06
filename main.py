@@ -10,7 +10,7 @@ import time
 import requests
 
 # 推送server酱
-sckey = sys.argv[5]
+sckey = sys.argv[0]
 
 # 开启根据地区天气情况降低步数（默认关闭）
 open_get_weather = sys.argv[3]
