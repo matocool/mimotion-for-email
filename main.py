@@ -103,7 +103,7 @@ def getBeijinTime():
         passwd_list = passwd_mi.split('#')
         if len(user_list) == len(passwd_list):
             if K != 1.0:
-                msg_mi = "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n，值位："+ str(step)"
+                msg_mi = "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n"
             else:
                 msg_mi = ""
             for user_mi, passwd_mi in zip(user_list, passwd_list):
