@@ -85,7 +85,7 @@ def getBeijinTime():
         print(max_ratio)
         max_ratio = int(hour)
         min_1 = 4500 * min_ratio
-        max_1 = 3000 * max_ratio
+        max_1 = 3500 * max_ratio
         min_1 = int(K * min_1)
         max_1 = int(K * max_1)
         print("天气系数是")
@@ -103,7 +103,7 @@ def getBeijinTime():
         passwd_list = passwd_mi.split('#')
         if len(user_list) == len(passwd_list):
             if K != 1.0:
-                msg_mi = "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n"
+                msg_mi = "由于天气" + type + "，已设置降低步数,系数为" + str(K) + "。\n"，值位："+ str(step) )
             else:
                 msg_mi = ""
             for user_mi, passwd_mi in zip(user_list, passwd_list):
