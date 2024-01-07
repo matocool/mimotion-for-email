@@ -21,4 +21,4 @@ jobs:
           git add .
           git commit -m "random cron"
           git push origin master
-          git branch -m main master
+          
