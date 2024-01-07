@@ -6,7 +6,7 @@ on:
   #pull_request:
   #  branches: [ main ]
   schedule:
-    - cron: '13 2,4,7,10,13 * * *'
+    - cron: '19 2,4,7,10,12,13 * * *'
   watch:
     types: started
   workflow_dispatch:
@@ -25,7 +25,7 @@ jobs:
       - name: 初始化Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.12'
           
       - name: 开始
         run: |
