@@ -1,4 +1,4 @@
-名字: Random Cron
+name: Random Cron
 on:
   workflow_run:
     workflows: ["刷步数"]
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PAT }} #此处PAT需要申请，教程详见：https://www.jianshu.com/p/bb82b3ad1d11,需要repo和workflow权限
-      - 名字: random cron
+      - name: random cron
         run: |
           sed -i -E "s/(- cron: ')[0-9]+( [^[:space:]]+ \* \* \*')/\1$(($RANDOM % 30))\2/g" .github/workflows/run.yml
           git config user.name github-actions
